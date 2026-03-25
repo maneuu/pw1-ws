@@ -1,18 +1,18 @@
 import { Exam, Answer, Weight } from './exam.js';
 
-// pesos das questões
-const weight = new Weight([2, 2, 2, 2]);
+// pesos das questões (5 questões → total 10)
+const weight = new Weight([2, 2, 2, 2, 2]);
 
-// gabarito oficial
-const gabarito = new Answer('Gabarito', ['A', 'B', 'C', 'D']);
+// gabarito oficial (5 respostas)
+const gabarito = new Answer('Gabarito', ['A', 'B', 'C', 'D', 'E']);
 
 // criando prova
 const prova = new Exam(weight, gabarito);
 
-// alunos
-const a1 = new Answer('João', ['A', 'B', 'C', 'D']); // 10
-const a2 = new Answer('Maria', ['A', 'B', 'D', 'D']); // 8
-const a3 = new Answer('Pedro', ['A', 'C', 'C', 'A']); // 6
+// alunos (5 respostas cada)
+const a1 = new Answer('João', ['A', 'B', 'C', 'D', 'E']); // 10
+const a2 = new Answer('Maria', ['A', 'B', 'D', 'D', 'E']); // 8
+const a3 = new Answer('Pedro', ['A', 'C', 'C', 'A', 'E']); // 6
 
 // adicionando
 prova.add(a1);
