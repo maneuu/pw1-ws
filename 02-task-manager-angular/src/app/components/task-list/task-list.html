@@ -1,0 +1,51 @@
+<div class="max-w-6xl mx-auto">
+
+
+  <div class="mb-6 flex items-center justify-between">
+    <p class="text-slate-600">Adicione novas tarefas pelo botão <span class="font-semibold">+</span>.</p>
+    <button (click)="openFormModal()" class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center text-2xl hover:bg-indigo-700">
+      +
+    </button>
+  </div>
+
+  <app-task-form [isOpen]="isFormOpen()" [editingTask]="editingTask()" (close)="closeFormModal()" (save)="handleTaskSubmit($event)">
+  </app-task-form>
+
+  <main>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <!-- Para fazer -->
+      <div>
+        <h2 class="font-semibold mb-2">Para fazer</h2>
+        <div class="space-y-3 min-h-[200px] p-3 bg-white rounded shadow-sm" (dragover)="onDragOver($event)" (drop)="onDrop($event, 'todo')">
+          @for (task of todoTasks(); track task.id) {
+          <app-task-card [task]="task" (edit)="editTask($event)" (delete)="deleteTask($event)" (dragStart)="onDragStart($event)">
+          </app-task-card>
+          }
+        </div>
+      </div>
+
+      <!-- Em andamento -->
+      <div>
+        <h2 class="font-semibold mb-2">Em andamento</h2>
+        <div class="space-y-3 min-h-[200px] p-3 bg-white rounded shadow-sm" (dragover)="onDragOver($event)" (drop)="onDrop($event, 'doing')">
+          @for (task of doingTasks(); track task.id) {
+          <app-task-card [task]="task" (edit)="editTask($event)" (delete)="deleteTask($event)" (dragStart)="onDragStart($event)">
+          </app-task-card>
+          }
+        </div>
+      </div>
+
+      <!-- Concluídas -->
+      <div>
+        <h2 class="font-semibold mb-2">Concluídas</h2>
+        <div class="space-y-3 min-h-[200px] p-3 bg-white rounded shadow-sm" (dragover)="onDragOver($event)" (drop)="onDrop($event, 'done')">
+          @for (task of doneTasks(); track task.id) {
+          <app-task-card [task]="task" (edit)="editTask($event)" (delete)="deleteTask($event)" (dragStart)="onDragStart($event)">
+          </app-task-card>
+          }
+        </div>
+      </div>
+    </div>
+  </main>
+
+</div>
